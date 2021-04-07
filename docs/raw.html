@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Raw code</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">MSB1015 - Scientific Programming - Assignment 2</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="version.html">Used packages</a>
+</li>
+<li>
+  <a href="raw.html">Code</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Raw code</h1>
+
+</div>
+
+
+<pre><code>#-----------------------------------------------------------------------------------------------------#
+#       Block 00        GENERAL INFORMATION
+#-----------------------------------------------------------------------------------------------------#
+
+# Copyright statement comment:
+#   All rights reserved.
+#
+# Author comment:
+#   Rick Reijnders
+#   Script version: 09-10-2019
+
+# File description:
+#   Name
+#     raw R-script.R
+#
+  
+rm(list=ls()) # clean workspace
+
+
+#-----------------------------------------------------------------------------------------------------#
+#       Script block 1: INSTALL PACKAGES
+#-----------------------------------------------------------------------------------------------------#
+# Install packages if needed and load, or just load packages
+if (!requireNamespace(&quot;BiocManager&quot;, quietly = TRUE))
+  install.packages(&quot;BiocManager&quot;, ask = F)
+
+# Insert all packages in requiredpackages
+requiredpackages &lt;-
+  c(&quot;WikidataQueryServiceR&quot;,&quot;ggplot2&quot;,&quot;backports&quot;,&quot;rJava&quot;,&quot;rcdk&quot;,&quot;pls&quot;,&quot;randomForest&quot;,
+  &quot;gplots&quot;,&quot;curl&quot;,&quot;data.table&quot;,&quot;caret&quot;,&quot;ggfortify&quot;,&quot;tidyverse&quot;)
+    
+for (i in requiredpackages) {
+    if (!requireNamespace(i, quietly = TRUE))
+        BiocManager::install(i, ask = F, dependencies = c(&quot;Depends&quot;, &quot;Imports&quot;))
+    require(as.character(i), character.only = TRUE)
+    print(i)
+}
+
+
+#-----------------------------------------------------------------------------------------------------#
+#       Script block 2: SETTINGS
+#-----------------------------------------------------------------------------------------------------#
+# General settings
+options(stringsAsFactors    = F)
+
+# Select 80% for train, 20% for test
+trainingTestRatio = 0.8
+linearAlkanesOnly = 0  # 1 = yes; 0 = no.
+
+# Setting seed to keep consistent results 
+set.seed(1)
+
+# The variable &#39;query&#39; contains the query call; make sure the query text is within the &quot;&#39;&quot; and &quot;&#39;&quot;.
+query = &#39;
+
+SELECT DISTINCT ?comp ?compLabel ?bp ?bpUnitLabel ?CC WHERE {
+  ?comp wdt:P31/wdt:P279* wd:Q41581 ;
+        p:P2102 [
+          ps:P2102 ?bp ;
+          psv:P2102/wikibase:quantityUnit  ?bpUnit
+        ] .
+        ?comp wdt:P233 ?CC .
+  SERVICE wikibase:label { bd:serviceParam wikibase:language &quot;[AUTO_LANGUAGE],en&quot;. }
+}
+
+&#39;
+
+#-----------------------------------------------------------------------------------------------------#
+#       Script block 3: FUNCTIONS
+#-----------------------------------------------------------------------------------------------------#
+# Root Mean Squared Error
+RMSE = function(yact, ypred){
+  sqrt(mean((yact - ypred)^2))
+}
+
+# Mean Absolute Error 
+MAE = function(yact, ypred){
+  mean(abs(yact - ypred))
+}
+
+
+#-----------------------------------------------------------------------------------------------------#
+#       Script block 4: QUERY CALL
+#-----------------------------------------------------------------------------------------------------#
+# Set endpoint for wikidata
+endpoint = &quot;https://query.wikidata.org/bigdata/namespace/wdq/sparql&quot;
+
+# Get the results
+queryResults = query_wikidata(query)
+
+
+#-----------------------------------------------------------------------------------------------------#
+#       Script block 5: BOILINGPOINT UNIT CONVERSION
+#-----------------------------------------------------------------------------------------------------#
+#C to Kelvin:
+# 0°C + 273.15 = 273,15K
+indexCelciusResults = which(queryResults$bpUnitLabel==&quot;degree Celsius&quot;)
+for( i in 1:length(indexCelciusResults)){
+    queryResults[indexCelciusResults[i],]$bp = (queryResults[indexCelciusResults[i],]$bp + 273.15)
+    queryResults[indexCelciusResults[i],]$bpUnitLabel = &quot;kelvin&quot;
+}
+
+#F to Kelvin:
+# (0°F − 32) × 5/9 + 273.15 = 255,372K
+indexFahrenheitResults = which(queryResults$bpUnitLabel==&quot;degree Fahrenheit&quot;)
+for( i in 1:length(indexFahrenheitResults)){
+    queryResults[indexFahrenheitResults[i],]$bp= (queryResults[indexFahrenheitResults[i],]$bp - 32) * (5/9) + 273.15
+    queryResults[indexFahrenheitResults[i],]$bpUnitLabel = &quot;kelvin&quot;
+}
+
+#additional failsafe if other metrics than Celsius and Fahrenheit are added (other metrics are removed)
+queryResults = queryResults[which(queryResults$bpUnitLabel==&quot;kelvin&quot;),]
+
+# Make backup
+queryResultsBACKUP = queryResults
+
+# Finalize data structure
+queryResults = data.frame(queryResultsBACKUP$compLabel, queryResultsBACKUP$bp, queryResultsBACKUP$CC)
+names(queryResults) = c(&quot;Comp&quot;,&quot;bp&quot;,&quot;CC&quot;)
+
+
+#-----------------------------------------------------------------------------------------------------#
+#       Script block 6: FILTERS AND OUTLIER HANDLING
+#-----------------------------------------------------------------------------------------------------#
+if(linearAlkanesOnly == 1){
+    queryResults = queryResults[-grep(pattern = &quot;\\(&quot;,x = queryResults$CC),]
+}
+
+# hexatriacontane 770.15 K (497 C); in wikidata under pressurised condition!
+if(!length(queryResults$Comp==&quot;hexatriacontane&quot;)==0){
+    queryResults$bp[queryResults$Comp==&quot;hexatriacontane&quot;] = 770.15
+}
+# Dooctacontane 958.05 K (684.9 C); IN WIKIDATA AS 881.85 K
+if(!length(queryResults$Comp==&quot;Dooctacontane&quot;)==0){
+    queryResults$bp[queryResults$Comp==&quot;Dooctacontane&quot;] = 958.05
+}
+
+# phytane 612.32 K (322.4 C); IN WIKIDATA AS 442.65 K at 760 torr which should be (322.4 C) 612.32 K.
+if(!length(queryResults$Comp==&quot;phytane&quot;)==0){
+    queryResults$bp[queryResults$Comp==&quot;phytane&quot;] = 612.32
+}
+
+
+#-----------------------------------------------------------------------------------------------------#
+#       Script block 7: DATA OVERVIEW
+#-----------------------------------------------------------------------------------------------------#
+# Get a general idea of how the data looks; disregarding branch effects; amount of C in compound linked to BP
+CClength_crude = nchar(gsub(pattern = &quot;\\)&quot;,replacement = &quot;&quot;,x = gsub(pattern = &quot;\\(&quot;,replacement = &quot;&quot;,x = queryResults$CC)))
+plotCClength = CClength_crude[order(CClength_crude)]
+plotBP = queryResults$bp[order(CClength_crude)]
+
+# Should result in a exponential function-like graph
+plot(plotCClength,plotBP,main = &quot;Carbon - boilingpoint relation&quot;,xlab = &quot;Amount of carbon atoms in alkene&quot;,ylab = &quot;Boiling point (Kelvin)&quot;)
+
+# Show how the data is distributed (focussing on bp)
+hist(queryResults$bp,breaks=20,main = &quot;Boiling point frequency distribution&quot;,xlab = &quot;Boiling point (Kelvin)&quot;,ylab = &quot;Frequency&quot;)
+
+#-----------------------------------------------------------------------------------------------------#
+#       Script block 8: DATA ENRICHMENT see:https://cran.r-project.org/web/packages/rcdk/vignettes/molform.html
+#-----------------------------------------------------------------------------------------------------#
+smilesParser &lt;- get.smiles.parser()
+descCategories &lt;- get.desc.categories()
+
+for( i in 1:length(queryResults$CC)){
+
+    # Get smiles from result query and add information
+    selectedSmilesData &lt;- parse.smiles(queryResults$CC[i])[[1]]
+    convert.implicit.to.explicit(selectedSmilesData)
+    #formula &lt;- get.mol2formula(selectedSmilesData,charge=0)
+
+
+    # Store the found information
+    #queryResults$formula[i] = {formula} # S4 object cannot be transferred nicely
+    #queryResults$mass[i] = formula@mass
+    #queryResults$string[i] = formula@string
+    #queryResults$charge[i] = formula@charge
+
+    # M/z values 
+    #queryResults$isotopes[i] = {get.isotopes.pattern(formula,minAbund=0.1)}
+
+    # Fingerprint? values
+    #queryResults$fingerprint[i] = {get.fingerprint(selectedSmilesData = selectedSmilesData)}
+
+    # Create a dataframe which contains all info possible to extract using the descriptors
+    rowSmileDescData = queryResults$Comp[i]
+    for(o in 1:5){
+        dn &lt;- get.desc.names(descCategories[o])
+        rowSmileDescData = cbind(rowSmileDescData, eval.desc(selectedSmilesData, dn))
+    }
+    
+    # This is done now as it will break if descriptors change (amount)
+    if(exists(&quot;dfSmilesDescData&quot;)){
+        dfSmilesDescData[i,] = rowSmileDescData
+        }else{
+        dfSmilesDescData = rowSmileDescData
+    }
+
+}
+
+# Make backup from data, easy for testing (resetting)
+mydataBACKUP = dfSmilesDescData
+dfSmilesDescData = mydataBACKUP
+
+# Remove component names (as it will mess up futher processing)
+dfSmilesDescData = dfSmilesDescData[,-1]
+
+
+#-----------------------------------------------------------------------------------------------------#
+#       Script block 9: LATENT VARIABLE FILTER
+#-----------------------------------------------------------------------------------------------------#
+# Remove NAs n stuff
+dfSmilesDescData &lt;- dfSmilesDescData[, !apply(dfSmilesDescData, 2, function(x) any(is.na(x)) )]
+dfSmilesDescData &lt;- dfSmilesDescData[, !apply( dfSmilesDescData, 2, function(x) length(unique(x)) == 1 )]
+
+if(T){
+    # Correlate the descriptors with the boiling point; if these are linked, they should add some info
+    corMatrix = cor(dfSmilesDescData , queryResults$bp)
+    corMatrix = as.data.frame(corMatrix[order(abs(corMatrix),decreasing = T),])
+
+    # select first 15 components:
+    componentNames = rownames(corMatrix)[1:15]
+    dfSmilesDescData = dfSmilesDescData[,match(colnames(dfSmilesDescData), x = componentNames)]
+}
+
+# - BLOCKED - Old method, keepin this inside for further reference 
+if(F){
+    dfSmilesDescData = mydataBACKUP
+    dfSmilesDescData = dfSmilesDescData[,-1]
+
+    # crude way to extract &#39;important&#39; features based on correlation
+    dfSmilesDescData &lt;- dfSmilesDescData[, !apply(dfSmilesDescData, 2, function(x) any(is.na(x)) )]
+    dfSmilesDescData &lt;- dfSmilesDescData[, !apply( dfSmilesDescData, 2, function(x) length(unique(x)) == 1 )]
+    r2 &lt;- which(cor(dfSmilesDescData)^2 &gt; .9, arr.ind=TRUE) # when keeping this high, the prediction improves
+    r2 &lt;- r2[ r2[,1] &gt; r2[,2] , ]
+    dfSmilesDescData &lt;- dfSmilesDescData[, -unique(r2[,2])]
+}
+# - BLOCKED -
+
+# should contain nAtomLAC; the amount of c atoms
+if(!exists(&quot;dfSmilesDescData$nAtomLAC&quot;)){
+
+    dfSmilesDescData = cbind(dfSmilesDescData, dfSmilesDescData$nAtomLAC)
+    names(dfSmilesDescData)[dim(dfSmilesDescData)[2]] = &quot;n&quot;
+    }else{
+    names(dfSmilesDescData)[names(dfSmilesDescData)==&quot;dfSmilesDescData$nAtomLAC&quot;] = &quot;n&quot;
+}
+
+# Store resulting input file in dfInputML; as it is the input for ML
+dfInputML = dfSmilesDescData
+
+# Finish prepare data
+# Add and define the &#39;to be predicted&#39; column
+indexBoilPoint = ncol(dfInputML)+1
+dfInputML[,indexBoilPoint] = queryResults$bp
+names(dfInputML)[indexBoilPoint] = &#39;BoilPoint&#39;
+
+# Ordered data is required later
+dfInputML = dfInputML[order(dfInputML$BoilPoint),]
+
+
+#-----------------------------------------------------------------------------------------------------#
+#       Script block 10: DATA SUBSETTING FOR MACHINE LEARNING
+#-----------------------------------------------------------------------------------------------------#
+# Define variables 
+sample.length = length(dfInputML[,1])
+
+# Higher probability to select lower (underrepresented) samples; 
+# improves range of model, increases fit and prediction power.
+# Ranges from 1 (select) to 0.5 (chance)
+sample.biasprob = 1 - 1:sample.length /max(sample.length )/2 
+
+# Make data objects
+samples.upper = sample(sample.length , floor(length(dfInputML[,1])*trainingTestRatio),prob = sample.biasprob ) #get all unique samples (not frequecies) and sample 80%
+#plot(samples.upper[order(samples.upper)])
+samples.total = (1:length(dfInputML[,1])) # all unique samples (not frequecies)
+samples.lowerl = samples.total[!samples.total %in% samples.upper]  #which samples are sampled
+
+# Subset data
+data.train = dfInputML[samples.upper,]#contains all upper 
+data.train = as.data.frame(data.train)
+data.test = dfInputML[samples.lowerl,]#contains all lower 
+data.test = as.data.frame(data.test)
+
+# Remove nas
+data.train=data.train[!is.na(data.train[,1]),]
+data.test=data.test[!is.na(data.test[,1]),]
+
+# Create standardized object
+xNN = data.train[,-(indexBoilPoint)]
+yNN = data.train[,indexBoilPoint]
+dat = data.frame(xNN, y = yNN)
+
+# Remove samples with in datasets n &lt; 1
+data.train = dat[dat$n&gt;0,]
+yactual.train = data.train$y
+data.test = data.test[data.test$n&gt;0,]
+yactual.test = data.test$BoilPoint
+
+
+#-----------------------------------------------------------------------------------------------------#
+#       Script block 11: PLS MODEL
+#-----------------------------------------------------------------------------------------------------#
+# Define training control method; 10 - k - cross validation
+train_control &lt;- trainControl(method=&quot;cv&quot;, number=10)
+
+# Train the model
+model &lt;- train(y~., data=data.train, trControl=train_control, method=&quot;pls&quot;)
+
+# Find out what model is best
+print(model)
+
+# Find out most important variables
+Varimportance = varImp(model)
+cat(paste(&quot;Best model fit with&quot;, model$bestTune, &quot;latent components \n&quot;))
+cat(paste(&quot;Latent components:&quot;,paste(rownames(Varimportance$importance)[order(decreasing = T,Varimportance$importance$Overall)][1:model$bestTune[1,]],collapse = &quot;, &quot;),&quot;\n&quot;))
+plot(Varimportance, main=&quot;Varible importance in PLS model \n&quot;)
+
+# Predict test set
+ypredCARET.pls.test &lt;- model %&gt;% predict(data.test)
+
+# Root mean squared error
+RMSE.pls.test = RMSE(yactual.test, ypredCARET.pls.test)
+RMSE.pls.test
+# Results in: 16.09
+
+# Mean absolute error
+MAE.pls.test = MAE(yactual.test, ypredCARET.pls.test)
+MAE.pls.test
+# Results in: 14.97
+
+# Plot ypred vs yactual of test data
+plot(yactual.test, ypredCARET.pls.test,
+    xlab=&quot;Observed BP test set&quot;, ylab=&quot;Predicted BP test set&quot;,
+    pch=19, xlim=c(0, ceiling(max(yNN)*1.1)), ylim=c(0, ceiling(max(yNN)*1.1)),main=&quot;Prediction error test set (PLS model)&quot;)
+    abline(0,1, col=&#39;red&#39;)
+    text(200,ceiling(max(yNN)*1.1),paste(&quot;RMSE: &quot;,RMSE.pls.test))
+    text(200,ceiling(max(yNN)*1.1)-50,paste(&quot;MAE: &quot;,MAE.pls.test))
+
+# Predict training data; check overfitting
+ypredCARET.pls.train &lt;- model %&gt;% predict(data.train)
+
+# Root mean squared error
+RMSE.pls.train = RMSE(yactual.train, ypredCARET.pls.train)
+RMSE.pls.train
+# Results in: 19.94
+
+# Mean absolute error
+MAE.pls.train = MAE(yactual.train, ypredCARET.pls.train)
+MAE.pls.train
+# Results in: 14.84
+
+# Plot ypred vs yactual of training data
+plot(yactual.train, ypredCARET.pls.train,
+    xlab=&quot;Observed BP train set&quot;, ylab=&quot;Predicted BP train set&quot;,
+    pch=19, xlim=c(0, ceiling(max(yNN)*1.1)), ylim=c(0, ceiling(max(yNN)*1.1)),main=&quot;Prediction error training set (PLS model)&quot;)
+    abline(0,1, col=&#39;red&#39;)
+    text(200,ceiling(max(yNN)*1.1),paste(&quot;RMSE: &quot;,RMSE.pls.train))
+    text(200,ceiling(max(yNN)*1.1)-50,paste(&quot;MAE: &quot;,MAE.pls.train))
+
+#-----------------------------------------------------------------------------------------------------#
+#       Script block 12: RANDOM FOREST MODEL
+#-----------------------------------------------------------------------------------------------------#
+# Define training control method; 10 - k - cross validation
+train_control &lt;- trainControl(method=&quot;cv&quot;, number=10)
+
+# Train the model
+model &lt;- train(y~., data=data.train, trControl=train_control, method=&quot;rf&quot;)
+
+# Find out what model is best
+print(model)
+
+# Find out most important variables - BLOCKED - this doesnt work for rf
+if(F){
+    Varimportance = varImp(model)
+    cat(paste(&quot;Best model fit with&quot;, model$bestTune, &quot;latent components \n&quot;))
+    cat(paste(&quot;Latent components:&quot;,paste(rownames(Varimportance$importance)[order(decreasing = T,Varimportance$importance$Overall)][1:model$bestTune[1,]],collapse = &quot;, &quot;),&quot;\n&quot;))
+    plot(Varimportance, main=&quot;Varible importance in rf model \n&quot;)
+}
+# Predict test set
+ypredCARET.rf.test &lt;- model %&gt;% predict(data.test)
+
+# Root mean squared error
+RMSE.rf.test = RMSE(yactual.test, ypredCARET.rf.test)
+RMSE.rf.test
+# Results in: 8.19
+
+# Mean absolute error
+MAE.rf.test = MAE(yactual.test, ypredCARET.rf.test)
+MAE.rf.test
+# Results in: 5.35
+
+# Plot ypred vs yactual of test data
+plot(yactual.test, ypredCARET.rf.test,
+    xlab=&quot;Observed BP test set&quot;, ylab=&quot;Predicted BP test set&quot;,
+    pch=19, xlim=c(0, ceiling(max(yNN)*1.1)), ylim=c(0, ceiling(max(yNN)*1.1)),main=&quot;Prediction error test set (RandomForest model)&quot;)
+    abline(0,1, col=&#39;red&#39;)
+    text(200,ceiling(max(yNN)*1.1),paste(&quot;RMSE: &quot;,RMSE.rf.test))
+    text(200,ceiling(max(yNN)*1.1)-50,paste(&quot;MAE: &quot;,MAE.rf.test))
+
+# Predict training data; check overfitting
+ypredCARET.rf.train &lt;- model %&gt;% predict(data.train)
+
+# Root mean squared error
+RMSE.rf.train = RMSE(yactual.train, ypredCARET.rf.train)
+RMSE.rf.train
+# Results in: 7.65
+
+# Mean absolute error
+MAE.rf.train = MAE(yactual.train, ypredCARET.rf.train)
+MAE.rf.train
+# Results in: 3.78
+
+# Plot ypred vs yactual of training data
+plot(yactual.train, ypredCARET.rf.train,
+    xlab=&quot;Observed BP train set&quot;, ylab=&quot;Predicted BP train set&quot;,
+    pch=19, xlim=c(0, ceiling(max(yNN)*1.1)), ylim=c(0, ceiling(max(yNN)*1.1)),main=&quot;Prediction error training set (RandomForest model)&quot;)
+    abline(0,1, col=&#39;red&#39;)
+    text(200,ceiling(max(yNN)*1.1),paste(&quot;RMSE: &quot;,RMSE.rf.train))
+    text(200,ceiling(max(yNN)*1.1)-50,paste(&quot;MAE: &quot;,MAE.rf.train))</code></pre>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
